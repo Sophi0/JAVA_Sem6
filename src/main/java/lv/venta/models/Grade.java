@@ -37,22 +37,19 @@ public class Grade {
 	@Max(value = 10)
 	private int gvalue;	//ari nevajag notnull, jo ir primitivais datu tips
 	
-	@Column(name = "Course")
-	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "IDc")
 	private Course course;
 
 	@ManyToOne
 	@JoinColumn(name = "IDs")	//grade tabula pievienojam kolonnu par studentu vardu un id
 	private Student student;
-	
-	/*
-	public Grade(@NotNull @Min(0) @Max(10) int gvalue, @NotNull Student student, @NotNull Course course) {
+
+	public Grade(@Min(0) @Max(10) int gvalue, Course course, Student student) {
 		this.gvalue = gvalue;
-		this.student = student;
 		this.course = course;
+		this.student = student;
 	}
-	*/
-	
 	
 	
 }
