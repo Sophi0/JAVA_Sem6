@@ -29,10 +29,11 @@ public class Grade {
 	@Setter(value = AccessLevel.NONE)	
 	private long idg;
 	
-	@Column(name = "Value")
+	//value nosaukums parasti nedrikst rakstit, jo h2 bibliotekaa ir shads key word!
+	@Column(name = "GradeValue")
 	@Min(value = 0)
 	@Max(value = 10)
-	private int value;	//ari nevajag notnull, jo ir primitivais datu tips
+	private int gvalue;	//ari nevajag notnull, jo ir primitivais datu tips
 	
 	@Column(name = "Student")
 	@NotNull
@@ -42,12 +43,13 @@ public class Grade {
 	@NotNull
 	private Course course;
 
-	public Grade(@NotNull @Min(0) @Max(10) int value, @NotNull Student student, @NotNull Course course) {
-		this.value = value;
+	/*
+	public Grade(@NotNull @Min(0) @Max(10) int gvalue, @NotNull Student student, @NotNull Course course) {
+		this.gvalue = gvalue;
 		this.student = student;
 		this.course = course;
 	}
-	
+	*/
 	
 	
 	
