@@ -15,24 +15,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Table(name = "professor_table")	//table in database
+@Table(name = "student_table")	
 @Entity
-@Getter				//automatiski uztaisa get funckijas
-@Setter				//automatiski uztaisa set funckijas
-@NoArgsConstructor	//bezargumenta konstruktorus uztaisa
-@ToString			//toString funkciju uztaisa
-public class Professor {
+@Getter				
+@Setter			
+@NoArgsConstructor	
+@ToString		
+public class Student {
 
-	@Column(name = "IDp")	//pievienojam kolonnu tabulam ar nosaukumu IDp
-	@Id						//obligati jabut id
-	@GeneratedValue(strategy = GenerationType.AUTO)	//lai random genere id
-	@Setter(value = AccessLevel.NONE)	//neuztaisa speciali set funkciju
-	private long idp;	//id professor
+	@Column(name = "IDp")	
+	@Id						
+	@GeneratedValue(strategy = GenerationType.AUTO)	
+	@Setter(value = AccessLevel.NONE)	
+	private long ids;
 	
-	//TODO add data JPA annotations
-	//TODO add validation annotations
-	//TODO ADD, COMMIT AND PUSH
-	//TODO do this also with Student, Course, Grade
 	@Column(name = "Name")
 	@NotNull
 	@Size(min = 3, max = 20)
@@ -44,16 +40,13 @@ public class Professor {
 	@Size(min = 3, max = 30)
 	@Pattern(regexp = "[A-ZĒŪĪĀĻŅČŠŽ]{1}[a-zēīāūļžņš]+([ ][A-ZĒŪĪĀĻŅŠČŽ]{1}[a-zēīāūļžņš]+)?", message = "Only latin letters")
 	private String surname;
-	
-	@Column(name = "Degree")
-	@NotNull
-	private Degree degree;
 
-	public Professor(String name, String surname, Degree degree) {
+	public Student(String name, String surname) {
 		this.name = name;
 		this.surname = surname;
-		this.degree = degree;
 	}
+
+	
 	
 	
 }
