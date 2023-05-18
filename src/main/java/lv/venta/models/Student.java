@@ -45,6 +45,7 @@ public class Student {
 	private String surname;
 
 	@OneToMany(mappedBy = "student")	//vienam studentam vairakas atzimes
+	@ToString.Exclude					//vajag rakstit, jo mes negribam printet sho
 	private Collection<Grade> grades;	//kolekcija, jo studentam varbut daudz vertejumus
 	
 	public Student(

@@ -47,11 +47,12 @@ public class Course {
 	@Max(value = 20)
 	private int creditPoints;	//nevajag notnull anotasciju, jo tas ir primitivais datu tips(int)
 	
-	@OneToOne	//tas nozime, ka no kursa varam aiziet uz profesoru
+	@OneToOne					//tas nozime, ka no kursa varam aiziet uz profesoru
 	@JoinColumn(name = "IDp")	//mes pievienojam pie shi tabulam professora id
 	private Professor professor;
 	
 	@OneToMany(mappedBy = "course")
+	@ToString.Exclude			//vajag rakstit, jo mes negribam printet sho
 	private Collection<Grade> grades;
 
 	public Course(

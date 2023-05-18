@@ -10,7 +10,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +34,7 @@ public class Grade {
 	@Column(name = "GradeValue")
 	@Min(value = 0)
 	@Max(value = 10)
-	private int gvalue;	//ari nevajag notnull, jo ir primitivais datu tips
+	private int gvalue;			//ari nevajag notnull, jo ir primitivais datu tips
 	
 	@ManyToOne
 	@JoinColumn(name = "IDc")
