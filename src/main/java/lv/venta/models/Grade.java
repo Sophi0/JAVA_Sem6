@@ -30,10 +30,9 @@ public class Grade {
 	private long idg;
 	
 	@Column(name = "Value")
-	@NotNull
-	@Min(0)
-	@Max(10)
-	private int value;
+	@Min(value = 0)
+	@Max(value = 10)
+	private int value;	//ari nevajag notnull, jo ir primitivais datu tips
 	
 	@Column(name = "Student")
 	@NotNull
@@ -48,6 +47,8 @@ public class Grade {
 		this.student = student;
 		this.course = course;
 	}
+	
+	
 	
 	
 }

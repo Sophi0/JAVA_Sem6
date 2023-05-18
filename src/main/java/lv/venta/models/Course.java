@@ -37,21 +37,17 @@ public class Course {
 	@Pattern(regexp = "[A-Z]{1}[a-z\\ ]+", message = "Only latinletters and space")  
 	private String title;
 	
-	@Column(name = "Credit Points")
-	@NotNull
-	@Min(1)
-	@Max(20)
-	private int creditPoints;
+	@Column(name = "CreditPoints")
+	@Min(value = 1)
+	@Max(value = 20)
+	private int creditPoints;	//nevajag notnull anotasciju, jo tas ir primitivais datu tips(int)
 	
+	/*
 	@Column(name = "Professor")
 	@NotNull
 	private Professor professor;
-
-	public Course(String title, int creditPoints, Professor professor) {
-		this.title = title;
-		this.creditPoints = creditPoints;
-		this.professor = professor;
-	}
+	 */
 	
+	//TODO add constructor later
 	
 }
