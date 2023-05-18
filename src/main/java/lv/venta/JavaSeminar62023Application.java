@@ -18,6 +18,10 @@ import lv.venta.repos.IStudentRepo;
 @SpringBootApplication
 public class JavaSeminar62023Application {
 
+
+	//TODO change linkage between Professor and Course to ManytoMany
+	//TODO create adding function for both Collections
+	//TODO change testModel function to add 2 courses for Zagars and 2 professors for Ekonomika
 	public static void main(String[] args) {
 		SpringApplication.run(JavaSeminar62023Application.class, args);
 	}
@@ -29,7 +33,7 @@ public class JavaSeminar62023Application {
 			@Override
 			public void run(String... args) throws Exception {
 				Professor p1 = new Professor("Juris", "Zagars", Degree.phd);
-				Professor p2 = new Professor("Viktors", "Smirnovs", Degree.phd);
+				Professor p2 = new Professor("Dmitrijs", "Smirnovs", Degree.phd);
 				prRepo.save(p1);
 				prRepo.save(p2);
 				

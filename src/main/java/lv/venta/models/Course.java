@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -47,20 +48,20 @@ public class Course {
 	@Max(value = 20)
 	private int creditPoints;	//nevajag notnull anotasciju, jo tas ir primitivais datu tips(int)
 	
-	@OneToOne					//tas nozime, ka no kursa varam aiziet uz profesoru
-	@JoinColumn(name = "IDp")	//mes pievienojam pie shi tabulam professora id
-	private Professor professor;
+	@ManyToMany(mappedBy = "courses")			
+	private Collection<Professor> professors;
 	
 	@OneToMany(mappedBy = "course")
 	@ToString.Exclude			//vajag rakstit, jo mes negribam printet sho
 	private Collection<Grade> grades;
 
+	
 	public Course(
 			@NotNull @Size(min = 3, max = 150) @Pattern(regexp = "[A-Z]{1}[a-z\\ ]+", message = "Only latinletters and space") String title,
 			@Min(1) @Max(20) int creditPoints, Professor professor) {
 		this.title = title;
 		this.creditPoints = creditPoints;
-		this.professor = professor;
+		this.professors = professors;
 	}
 	
 	
