@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -29,10 +30,6 @@ public class Professor {
 	@Setter(value = AccessLevel.NONE)	//neuztaisa speciali set funkciju
 	private long idp;	//id professor
 	
-	//TODO add data JPA annotations
-	//TODO add validation annotations
-	//TODO ADD, COMMIT AND PUSH
-	//TODO do this also with Student, Course, Grade
 	@Column(name = "Name")
 	@NotNull
 	@Size(min = 3, max = 20)
@@ -49,6 +46,9 @@ public class Professor {
 	@NotNull
 	private Degree degree;
 
+	@OneToOne(mappedBy = "professor")	//tas nozime, ka no profesora mes varam ziaiet uz kursu	
+	private Course course;
+	
 	public Professor(String name, String surname, Degree degree) {
 		this.name = name;
 		this.surname = surname;
