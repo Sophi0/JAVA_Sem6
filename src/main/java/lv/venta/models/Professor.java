@@ -46,7 +46,7 @@ public class Professor {
 	@NotNull
 	private Degree degree;
 
-	@OneToOne(mappedBy = "professor")	//tas nozime, ka no profesora mes varam ziaiet uz kursu	
+	@OneToOne(mappedBy = "professor")	//tas nozime, ka no profesora mes varam ziaiet uz kursu; mappedBy nozime, ka mes iepakojam no professora klasi
 	private Course course;
 	
 	public Professor(String name, String surname, Degree degree) {
