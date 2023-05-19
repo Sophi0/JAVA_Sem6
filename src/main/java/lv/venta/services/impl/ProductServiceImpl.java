@@ -72,7 +72,7 @@ public class ProductServiceImpl implements IFilteringService{
 	@Override
 	public ArrayList<Course> retrieveCoursesByProfessorId(long id) throws Exception{
 		if(id > 0) {
-			ArrayList<Course> filteredResults = courseRepo.findByProfessorIdp(id);	//atrodam caur id, jo tas ir ertak un racionalak. ta ka professor un grade ir saivienots, tad parasti ejam grade -> professor id	
+			ArrayList<Course> filteredResults = courseRepo.findByProfessorsIdp(id);	//atrodam caur id, jo tas ir ertak un racionalak. ta ka professor un grade ir saivienots, tad parasti ejam grade -> professor id	
 			return filteredResults;
 		}
 		else {
@@ -82,8 +82,18 @@ public class ProductServiceImpl implements IFilteringService{
 
 	@Override
 	public float calculateAVGGradeInCourseId(long id) throws Exception{
-		// TODO Auto-generated method stub
-		return 0;
+		if(id > 0) {
+			ArrayList<Grade> filteredResults = gradeRepo.findByCourseIdc(id);	
+			float sum = 0;
+			for(Grade temp: filteredResults) {
+				sum += temp.getGvalue();
+			}
+			return sum / filteredResults.size();
+			
+		}
+		else {
+			throw new Exception("ID need to be positive");
+		}
 	}
 
 }
