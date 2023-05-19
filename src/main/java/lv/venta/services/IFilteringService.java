@@ -21,9 +21,9 @@ public interface IFilteringService {
 	
 	ArrayList<Grade> retrieveGradesByStudentId(long id);
 	
-	Course retrieveCoursesByStudent(Student student) throws Exception;
+	ArrayList<Course> retrieveCoursesByStudentId(long id);
 	
-	Course retrieveCoursesByProfessor(Professor professor) throws Exception;
+	ArrayList<Course> retrieveCoursesByProfessorId(long id);
 	
-	Grade calculateAVGGradeInCourse(Course course) throws Exception;
+	float calculateAVGGradeInCourseId(long id);
 }
