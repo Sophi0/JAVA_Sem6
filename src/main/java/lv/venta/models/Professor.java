@@ -1,10 +1,16 @@
 package lv.venta.models;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -46,14 +52,26 @@ public class Professor {
 	@NotNull
 	private Degree degree;
 
-	@OneToOne(mappedBy = "professor")	//tas nozime, ka no profesora mes varam ziaiet uz kursu; mappedBy nozime, ka mes iepakojam no professora klasi
-	@ToString.Exclude					//vajag rakstit, jo mes negribam printet sho
-	private Course course;
+	@ManyToMany(mappedBy = "professors")				
+	@ToString.Exclude
+	private Collection<Course> courses = new ArrayList<>();
 	
 	public Professor(String name, String surname, Degree degree) {
 		this.name = name;
 		this.surname = surname;
 		this.degree = degree;
+	}
+	
+	public void addCourse(Course inputCourse) {
+		if(!courses.contains(inputCourse)) {
+			courses.add(inputCourse);
+		}
+	}
+	
+	public void removeCourse(Course inputCourse) {
+		if(courses.contains(inputCourse)) {
+			courses.remove(inputCourse);
+		}
 	}
 	
 	

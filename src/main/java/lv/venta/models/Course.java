@@ -1,5 +1,6 @@
 package lv.venta.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import jakarta.persistence.Column;
@@ -8,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -47,21 +50,36 @@ public class Course {
 	@Max(value = 20)
 	private int creditPoints;	//nevajag notnull anotasciju, jo tas ir primitivais datu tips(int)
 	
-	@OneToOne					//tas nozime, ka no kursa varam aiziet uz profesoru
-	@JoinColumn(name = "IDp")	//mes pievienojam pie shi tabulam professora id
-	private Professor professor;
+	@ManyToMany
+	@JoinTable(name = "prof_course_table", 
+	joinColumns = @JoinColumn(name = "IDc"), 
+	inverseJoinColumns = @JoinColumn(name = "IDp"))
+	@ToString.Exclude
+	private Collection<Professor> professors = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "course")
 	@ToString.Exclude			//vajag rakstit, jo mes negribam printet sho
 	private Collection<Grade> grades;
 
+	
 	public Course(
 			@NotNull @Size(min = 3, max = 150) @Pattern(regexp = "[A-Z]{1}[a-z\\ ]+", message = "Only latinletters and space") String title,
-			@Min(1) @Max(20) int creditPoints, Professor professor) {
+			@Min(1) @Max(20) int creditPoints, ArrayList<Professor> professors) {
 		this.title = title;
 		this.creditPoints = creditPoints;
-		this.professor = professor;
+		this.professors = professors;
 	}
 	
+	public void addProfessor(Professor inputProfessor) {
+		if(!professors.contains(inputProfessor)) {
+			professors.add(inputProfessor);
+		}
+	}
+	
+	public void removeProfessor(Professor inputProfessor) {
+		if(professors.contains(inputProfessor)) {
+			professors.remove(inputProfessor);
+		}
+	}
 	
 }
