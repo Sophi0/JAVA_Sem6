@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -49,7 +50,10 @@ public class Course {
 	@Max(value = 20)
 	private int creditPoints;	//nevajag notnull anotasciju, jo tas ir primitivais datu tips(int)
 	
-	@ManyToMany(mappedBy = "courses")	
+	@ManyToMany
+	@JoinTable(name = "prof_course_table", 
+	joinColumns = @JoinColumn(name = "IDc"), 
+	inverseJoinColumns = @JoinColumn(name = "IDp"))
 	@ToString.Exclude
 	private Collection<Professor> professors = new ArrayList<>();
 	
