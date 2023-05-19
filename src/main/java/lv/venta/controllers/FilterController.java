@@ -20,6 +20,22 @@ public class FilterController {
 	}
 	
 	//TODO add this for Professor
+	@GetMapping(value = "/info/showAllProfessors")	//localhost:8080/info/showAllProfessors
+	public String getAllProfessorsFunc(Model model) {
+		model.addAttribute("professors", filtService.retrieveAllProfessors());
+		return "all-professors-page";	//will show all-professors-page.html
+	}
+	
 	//TODO add this for Grades
+	@GetMapping(value = "/info/showAllGrades")	//localhost:8080/info/showAllGrades
+	public String getAllGradesFunc(Model model) {
+		model.addAttribute("grades", filtService.retrieveAllGrades());
+		return "all-grades-page";	//will show all-grades-page.html
+	}
 	//TODO add this for Courses
+	@GetMapping(value = "/info/showAllCourses")	//localhost:8080/info/showAllCourses
+	public String getAllCoursesFunc(Model model) {
+		model.addAttribute("courses", filtService.retrieveAllCourses());
+		return "all-courses-page";	//will show all-courses-page.html
+	}
 }
