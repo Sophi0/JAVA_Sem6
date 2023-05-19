@@ -33,7 +33,7 @@ public class Professor {
 	@Column(name = "Name")
 	@NotNull
 	@Size(min = 3, max = 20)
-	@Pattern(regexp = "[A-ZĒŪĪĀĻŅČŠŽ]{1}[a-zēīāūļžņš]+([ ][A-ZĒŪĪĀĻŅŠČŽ]{1}[a-zēīāūļžņš]+)?)", message = "Only latin letters")
+	@Pattern(regexp = "[A-ZĒŪĪĀĻŅČŠŽ]{1}[a-zēīāūļžņš]+([ ][A-ZĒŪĪĀĻŅŠČŽ]{1}[a-zēīāūļžņš]+)?", message = "Only latin letters")
 	private String name;
 	
 	@Column(name = "Surname")

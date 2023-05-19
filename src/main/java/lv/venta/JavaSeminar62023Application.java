@@ -22,7 +22,7 @@ public class JavaSeminar62023Application {
 		SpringApplication.run(JavaSeminar62023Application.class, args);
 	}
 
-	@Bean
+	@Bean	//palaizos automatiski, startejot programmu
 	public CommandLineRunner testModel(IProfessorRepo prRepo, IStudentRepo stRepo, ICourseRepo csRepo, IGradeRepo grRepo) {
 		return new CommandLineRunner() {
 			
