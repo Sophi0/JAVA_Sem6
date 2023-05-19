@@ -50,7 +50,7 @@ public class ProductServiceImpl implements IFilteringService{
 	@Override
 	public ArrayList<Grade> retrieveGradesByStudentId(long id) throws Exception{
 		if(id > 0) {
-			ArrayList<Grade> filteredResults = gradeRepo.findByStudentIds(id);
+			ArrayList<Grade> filteredResults = gradeRepo.findByStudentIds(id);	//atrodam caur id, jo tas ir ertak un racionalak. ta ka student un grade ir saivienots, tad parasti ejam grade -> student id
 			return filteredResults;
 		}
 		else {
@@ -58,18 +58,26 @@ public class ProductServiceImpl implements IFilteringService{
 		}
 	}
 
-	
-
 	@Override
 	public ArrayList<Course> retrieveCoursesByStudentId(long id) throws Exception{
-		// TODO Auto-generated method stub
-		return null;
+		if(id > 0) {
+			ArrayList<Course> filteredResults = courseRepo.findByGradesStudentIds(id);	//ejam caur klasem: course -> grades -> student -> student id
+			return filteredResults;
+		}
+		else {
+			throw new Exception("ID need to be positive");
+		}
 	}
 
 	@Override
 	public ArrayList<Course> retrieveCoursesByProfessorId(long id) throws Exception{
-		// TODO Auto-generated method stub
-		return null;
+		if(id > 0) {
+			ArrayList<Course> filteredResults = courseRepo.findByProfessorIdp(id);	//atrodam caur id, jo tas ir ertak un racionalak. ta ka professor un grade ir saivienots, tad parasti ejam grade -> professor id	
+			return filteredResults;
+		}
+		else {
+			throw new Exception("ID need to be positive");
+		}
 	}
 
 	@Override
