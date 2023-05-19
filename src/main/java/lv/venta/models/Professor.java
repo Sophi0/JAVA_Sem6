@@ -52,7 +52,9 @@ public class Professor {
 	private Degree degree;
 
 	@ManyToMany
-	@JoinTable(name = "prof_course_table", joinColumns = @JoinColumn(name = "IDc"), inverseJoinColumns = @JoinColumn(name = "IDp"))				
+	@JoinTable(name = "prof_course_table", 
+	joinColumns = @JoinColumn(name = "IDc"), 
+	inverseJoinColumns = @JoinColumn(name = "IDp"))				
 	@ToString.Exclude
 	private Collection<Course> courses;
 	
