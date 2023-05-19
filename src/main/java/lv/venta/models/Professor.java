@@ -1,5 +1,6 @@
 package lv.venta.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import jakarta.persistence.Column;
@@ -56,12 +57,24 @@ public class Professor {
 	joinColumns = @JoinColumn(name = "IDc"), 
 	inverseJoinColumns = @JoinColumn(name = "IDp"))				
 	@ToString.Exclude
-	private Collection<Course> courses;
+	private Collection<Course> courses = new ArrayList<>();
 	
 	public Professor(String name, String surname, Degree degree) {
 		this.name = name;
 		this.surname = surname;
 		this.degree = degree;
+	}
+	
+	public void addCourse(Course inputCourse) {
+		if(!courses.contains(inputCourse)) {
+			courses.add(inputCourse);
+		}
+	}
+	
+	public void removeCourse(Course inputCourse) {
+		if(courses.contains(inputCourse)) {
+			courses.remove(inputCourse);
+		}
 	}
 	
 	
