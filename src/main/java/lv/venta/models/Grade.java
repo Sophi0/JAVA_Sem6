@@ -41,7 +41,7 @@ public class Grade {
 	private Course course;
 
 	@ManyToOne
-	@JoinColumn(name = "IDs")	//grade tabula pievienojam kolonnu par studentu vardu un id
+	@JoinColumn(name = "IDp")	//samainam no IDs uz IDp, jp student klasse extends person un mainas id nosaukums
 	private Student student;
 
 	public Grade(@Min(0) @Max(10) int gvalue, Course course, Student student) {
