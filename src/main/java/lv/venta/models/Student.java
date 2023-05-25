@@ -24,25 +24,7 @@ import lombok.ToString;
 @Setter			
 @NoArgsConstructor	
 @ToString		
-public class Student {
-
-	@Column(name = "IDs")	
-	@Id						
-	@GeneratedValue(strategy = GenerationType.AUTO)	
-	@Setter(value = AccessLevel.NONE)	
-	private long ids;
-	
-	@Column(name = "Name")
-	@NotNull
-	@Size(min = 3, max = 20)
-	@Pattern(regexp = "[A-ZĒŪĪĀĻŅČŠŽ]{1}[a-zēīāūļžņš]+([ ][A-ZĒŪĪĀĻŅŠČŽ]{1}[a-zēīāūļžņš]+)?", message = "Only latin letters")
-	private String name;
-	
-	@Column(name = "Surname")
-	@NotNull
-	@Size(min = 3, max = 30)
-	@Pattern(regexp = "[A-ZĒŪĪĀĻŅČŠŽ]{1}[a-zēīāūļžņš]+([ ][A-ZĒŪĪĀĻŅŠČŽ]{1}[a-zēīāūļžņš]+)?", message = "Only latin letters")
-	private String surname;
+public class Student extends Person{
 
 	@OneToMany(mappedBy = "student")	//vienam studentam vairakas atzimes
 	@ToString.Exclude					//vajag rakstit, jo mes negribam printet sho
@@ -51,8 +33,7 @@ public class Student {
 	public Student(
 			@NotNull @Size(min = 3, max = 20) @Pattern(regexp = "[A-ZĒŪĪĀĻŅČŠŽ]{1}[a-zēīāūļžņš]+([ ][A-ZĒŪĪĀĻŅŠČŽ]{1}[a-zēīāūļžņš]+)?", message = "Only latin letters") String name,
 			@NotNull @Size(min = 3, max = 30) @Pattern(regexp = "[A-ZĒŪĪĀĻŅČŠŽ]{1}[a-zēīāūļžņš]+([ ][A-ZĒŪĪĀĻŅŠČŽ]{1}[a-zēīāūļžņš]+)?", message = "Only latin letters") String surname) {
-		this.name = name;
-		this.surname = surname;
+		super(name, surname);
 	}
 
 	
