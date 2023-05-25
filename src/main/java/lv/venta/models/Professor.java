@@ -28,26 +28,8 @@ import lombok.ToString;
 @Setter				//automatiski uztaisa set funckijas
 @NoArgsConstructor	//bezargumenta konstruktorus uztaisa
 @ToString			//toString funkciju uztaisa
-public class Professor {
+public class Professor extends Person{
 
-	@Column(name = "IDp")	//pievienojam kolonnu tabulam ar nosaukumu IDp
-	@Id						//obligati jabut id
-	@GeneratedValue(strategy = GenerationType.AUTO)	//lai random genere id
-	@Setter(value = AccessLevel.NONE)	//neuztaisa speciali set funkciju
-	private long idp;	//id professor
-	
-	@Column(name = "Name")
-	@NotNull
-	@Size(min = 3, max = 20)
-	@Pattern(regexp = "[A-ZĒŪĪĀĻŅČŠŽ]{1}[a-zēīāūļžņš]+([ ][A-ZĒŪĪĀĻŅŠČŽ]{1}[a-zēīāūļžņš]+)?", message = "Only latin letters")
-	private String name;
-	
-	@Column(name = "Surname")
-	@NotNull
-	@Size(min = 3, max = 30)
-	@Pattern(regexp = "[A-ZĒŪĪĀĻŅČŠŽ]{1}[a-zēīāūļžņš]+([ ][A-ZĒŪĪĀĻŅŠČŽ]{1}[a-zēīāūļžņš]+)?", message = "Only latin letters")
-	private String surname;
-	
 	@Column(name = "Degree")
 	@NotNull
 	private Degree degree;
@@ -57,10 +39,11 @@ public class Professor {
 	private Collection<Course> courses = new ArrayList<>();
 	
 	public Professor(String name, String surname, Degree degree) {
-		this.name = name;
-		this.surname = surname;
+		super(name, surname);
 		this.degree = degree;
 	}
+	
+	
 	
 	public void addCourse(Course inputCourse) {
 		if(!courses.contains(inputCourse)) {
@@ -72,6 +55,13 @@ public class Professor {
 		if(courses.contains(inputCourse)) {
 			courses.remove(inputCourse);
 		}
+	}
+
+
+
+	public Professor(@NotNull Degree degree) {
+		super();
+		this.degree = degree;
 	}
 	
 	
